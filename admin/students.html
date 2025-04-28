@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admission System - Students</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Ensures footer stays at bottom */
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    main {
+      flex: 1;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Header -->
+  <header class="bg-[#9CAF70] text-white p-6">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <h1 class="text-2xl font-bold">
+        <span class="text-sm align-top">admission</span><span class="text-red-700">system</span>
+      </h1>
+      <nav class="space-x-6">
+        <a href="dashboard.html" class="hover:underline" aria-label="Go to Dashboard">Dashboard</a>
+        <a href="applications.html" class="hover:underline" aria-label="Go to Applications">Applications</a>
+        <a href="students.html" class="hover:underline font-semibold" aria-current="page" aria-label="Current page: Students">Students</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto p-6">
+
+    <!-- Top Bar -->
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-2xl font-semibold">Students</h2>
+      <button id="addStudentBtn" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="Add a new student">
+        + Add Student
+      </button>
+    </div>
+
+    <!-- Student Table -->
+    <div class="bg-white shadow-md rounded-lg overflow-x-auto">
+      <table class="min-w-full table-auto" aria-label="Students information table">
+        <thead class="bg-gray-100 text-gray-700">
+          <tr>
+            <th class="text-left px-4 py-3" scope="col">ID</th>
+            <th class="text-left px-4 py-3" scope="col">Full Name</th>
+            <th class="text-left px-4 py-3" scope="col">Program</th>
+            <th class="text-left px-4 py-3" scope="col">Email</th>
+            <th class="text-left px-4 py-3" scope="col">Status</th>
+            <th class="text-left px-4 py-3" scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="studentsTableBody">
+          <!-- Blank state -->
+          <tr id="emptyState">
+            <td colspan="6" class="text-center py-8 text-gray-500">No students available yet.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white text-center py-4 text-sm text-gray-500 mt-auto">
+    <p>© <span id="currentYear">2025</span> xyz - Admission Management System</p>
+  </footer>
+
+  <script>
+    // Wait for DOM to be fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      // Update copyright year automatically
+      document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+      // Add Student button functionality
+      document.getElementById('addStudentBtn').addEventListener('click', function() {
+        // You can implement this functionality based on your requirements
+        alert('Add student functionality will be implemented here');
+        
+        // For demonstration, add a sample student when button is clicked
+        addStudent('STU001', 'John Doe', 'Computer Science', 'john.doe@example.com', 'Active');
+      });
+    });
+
+    // Function to add students to the table
+    function addStudent(id, name, program, email, status) {
+      // Remove empty state message if it exists
+      const emptyState = document.getElementById('emptyState');
+      if (emptyState) {
+        emptyState.remove();
+      }
+
+      const tableBody = document.getElementById('studentsTableBody');
+      const row = document.createElement('tr');
+      row.className = 'border-t border-gray-200 hover:bg-gray-50';
+      
+      // Create table cells
+      row.innerHTML = `
+        <td class="px-4 py-3">${id}</td>
+        <td class="px-4 py-3">${name}</td>
+        <td class="px-4 py-3">${program}</td>
+        <td class="px-4 py-3">${email}</td>
+        <td class="px-4 py-3">
+          <span class="px-2 py-1 rounded-full text-xs ${status === 'Active' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'}">
+            ${status}
+          </span>
+        </td>
+        <td class="px-4 py-3">
+          <button class="text-blue-600 hover:text-blue-800 mr-2" aria-label="Edit student">Edit</button>
+          <button class="text-red-600 hover:text-red-800" aria-label="Delete student">Delete</button>
+        </td>
+      `;
+      
+      tableBody.appendChild(row);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admissions Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 min-h-screen">
+
+  <!-- Header -->
+  <header class="bg-[#9CAF70] text-white p-6">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <h1 class="text-2xl font-bold">
+        <a href="admission.html">
+          <sup>admission</sup><span class="text-red-700">system</span>
+        </a>
+      </h1>
+      <nav class="space-x-6">
+        <a href="dashboard.html" class="hover:underline">Dashboard</a>
+        <a href="applications.html" class="hover:underline">Applications</a>
+        <a href="students.html" class="hover:underline">Students</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto p-6 space-y-8">
+
+    <!-- Page Title -->
+    <div class="text-left">
+      <h2 class="text-3xl font-bold ">Admissions ashboard</h2>
+    </div>
+
+    <!-- Overview Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="bg-white rounded-lg shadow p-4">
+        <h2 class="text-gray-500 text-sm">Total Applications</h2>
+        <p class="text-2xl font-bold">0</p>
+        <p class="text-sm text-gray-400">0 pending review</p>
+      </div>
+      <div class="bg-white rounded-lg shadow p-4">
+        <h2 class="text-gray-500 text-sm">Approval Rate</h2>
+        <p class="text-2xl font-bold text-blue-700">0.0%</p>
+      </div>
+      <div class="bg-white rounded-lg shadow p-4">
+        <h2 class="text-gray-500 text-sm">Total Students</h2>
+        <p class="text-2xl font-bold">0</p>
+        <p class="text-sm text-gray-400">0 enrolled this period</p>
+      </div>
+      <div class="bg-white rounded-lg shadow p-4">
+        <h2 class="text-gray-500 text-sm">Program Capacity</h2>
+        <p class="text-2xl font-bold text-blue-700">0%</p>
+      </div>
+    </div>
+
+    <!-- Recent Applications -->
+    <div class="bg-white rounded-lg shadow p-6">
+      <h2 class="text-xl font-semibold mb-4">Recent Applications</h2>
+      <div class="overflow-x-auto">
+        <table class="min-w-full text-sm">
+          <thead class="bg-gray-100">
+            <tr>
+              <th class="px-4 py-2 text-left font-medium text-gray-600">ID</th>
+              <th class="px-4 py-2 text-left font-medium text-gray-600">Student</th>
+              <th class="px-4 py-2 text-left font-medium text-gray-600">Program</th>
+              <th class="px-4 py-2 text-left font-medium text-gray-600">Submission Date</th>
+              <th class="px-4 py-2 text-left font-medium text-gray-600">Status</th>
+              <th class="px-4 py-2 text-left font-medium text-gray-600">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-t">
+              <td colspan="6" class="px-4 py-4 text-center text-gray-400">No applications yet</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Applications by Status -->
+    <div class="bg-white rounded-lg shadow p-6">
+      <h2 class="text-xl font-semibold mb-4">Applications by Status</h2>
+      <ul class="space-y-2">
+        <li class="flex items-center text-sm text-gray-700"><span class="w-3 h-3 bg-yellow-400 rounded-full mr-2"></span> Pending <span class="ml-auto font-bold">0</span></li>
+        <li class="flex items-center text-sm text-gray-700"><span class="w-3 h-3 bg-blue-500 rounded-full mr-2"></span> Reviewing <span class="ml-auto font-bold">0</span></li>
+        <li class="flex items-center text-sm text-gray-700"><span class="w-3 h-3 bg-green-500 rounded-full mr-2"></span> Approved <span class="ml-auto font-bold">0</span></li>
+        <li class="flex items-center text-sm text-gray-700"><span class="w-3 h-3 bg-red-500 rounded-full mr-2"></span> Rejected <span class="ml-auto font-bold">0</span></li>
+      </ul>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white text-center py-4 text-sm text-gray-500">
+    <p>© 2025 xyz - Admission Management System</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Admission Portal</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <header class="bg-[#9CAF70] text-white rounded-lg shadow-lg mb-8">
+            <div class="container mx-auto px-6 py-4">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h1 class="text-3xl font-bold">Student Admission Portal</h1>
+                        <p class="text-red-700">Your pathway to academic excellence</p>
+                    </div>
+                    <div class="hidden md:block">
+                        <nav class="flex space-x-4">
+                            <a href="home.html" class="px-3 py-2 rounded hover:bg-gray-800">Home</a>
+                            <a href="program.html" class="px-3 py-2 rounded hover:bg-gray-800">Programs</a>
+                            <a href="contact.html" class="px-3 py-2 rounded hover:bg-gray-800">Contact</a>
+                            <a href="faq.html" class="px-3 py-2 rounded hover:bg-gray-800">FAQ</a>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main>
+            <!-- Welcome Section -->
+            <section class="bg-white rounded-lg shadow-lg mb-8 p-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">Welcome to our Admission Portal</h2>
+                <p class="text-gray-600 mb-6">Please select your student status below to begin the admission process. Our streamlined system will guide you through each step of the application.</p>
+                
+                <!-- Admission Options -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+                    <!-- New Student -->
+                    <div class="bg-blue-50 rounded-lg shadow p-6 hover:shadow-lg transition duration-300">
+                        <h3 class="text-xl font-bold text-blue-700 mb-4">New Student</h3>
+                        <p class="text-gray-600 mb-6">First time applying to our university? Start your academic journey here.</p>
+                        <button id="newStudentBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300">
+                            Apply as New Student
+                        </button>
+                    </div>
+
+                    <!-- Returning Student -->
+                    <div class="bg-green-50 rounded-lg shadow p-6 hover:shadow-lg transition duration-300">
+                        <h3 class="text-xl font-bold text-green-700 mb-4">Returning Student</h3>
+                        <p class="text-gray-600 mb-6">Welcome back! Continue your education or apply for another program.</p>
+                        <button id="returningStudentBtn" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300">
+                            Apply as Returning Student
+                        </button>
+                    </div>
+
+                    <!-- Transfer Student -->
+                    <div class="bg-purple-50 rounded-lg shadow p-6 hover:shadow-lg transition duration-300">
+                        <h3 class="text-xl font-bold text-purple-700 mb-4">Transfer Student</h3>
+                        <p class="text-gray-600 mb-6">Coming from another institution? Transfer your credits and continue your studies.</p>
+                        <button id="transferStudentBtn" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300">
+                            Apply as Transfer Student
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Application Form Section (Initially Hidden) -->
+            <section id="applicationForm" class="bg-white rounded-lg shadow-lg mb-8 p-6 hidden">
+                <h2 id="formTitle" class="text-2xl font-bold text-gray-800 mb-4">Application Form</h2>
+                <div id="formContent">
+                    <!-- Form will be loaded here -->
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-[#9CAF70] text-white rounded-lg shadow-lg mt-8 p-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Contact Us</h3>
+                    <p>Email: admissions@university.edu</p>
+                    <p>Phone: (555) 123-4567</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+                    <ul>
+                        <li><a href="#" class="hover:underline">About Us</a></li>
+                        <li><a href="#" class="hover:underline">Admission Requirements</a></li>
+                        <li><a href="#" class="hover:underline">Financial Aid</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Follow Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="hover:text-blue-300">Facebook</a>
+                        <a href="#" class="hover:text-blue-300">Twitter</a>
+                        <a href="#" class="hover:text-blue-300">Instagram</a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 text-center text-sm">
+                <p>&copy; 2025 Admission Management System. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Form templates for different student types
+        const formTemplates = {
+            newStudent: `
+                <form action="process_new_student.php" method="POST" class="space-y-6">
+                    <div class="bg-blue-50 p-4 rounded mb-6">
+                        <p class="text-blue-700">Please fill out all required fields to submit your new student application.</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-gray-700 font-bold mb-2" for="firstName">First Name</label>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="firstName" name="firstName" type="text" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-bold mb-2" for="middleName">Middle Name</label>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="middleName" name="middleName" type="text">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-bold mb-2" for="lastName">Last Name</label>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="lastName" name="lastName" type="text" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-bold mb-2" for="email">Email Address</label>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" name="email" type="email" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-bold mb-2" for="phone">Phone Number</label>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="phone" name="phone" type="tel">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-bold mb-2" for="dob">Date of Birth</label>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="dob" name="dob" type="date">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-bold mb-2" for="program">Desired Program</label>
+                            <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="program" name="program" required>
+                                <option value="">Select a Program</option>
+                                <option value="BSBA">Business Administration</option>
+                                <option value="BSIT">Information Technology</option>
+                                <option value="BSCPE">Computer Engineering</option>
+                                <option value="BSCRIM">Criminology</option>
+                                <option value="BSTM">Tourism Management</option>
+                                <option value="BSP">Psychology</option>
+                                <option value="BSOA">Office Administration</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-bold mb-2" for="highSchool">High School</label>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="highSchool" name="highSchool" type="text" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-bold mb-2" for="graduationYear">Year of Graduation</label>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="graduationYear" name="graduationYear" type="number" min="2000" max="2025" required>
+                        </div>
+                    </div>
+                    <div class="mt-6">
+                        <label class="block text-gray-700 font-bold mb-2" for="personalStatement">Personal Statement</label>
+                        <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="personalStatement" name="personalStatement" rows="5"></textarea>
+                    </div>
+                    <div class="flex items-center mt-6">
+                        <input class="mr-2" type="checkbox" id="termsCheck" name="termsCheck" required>
+                        <label class="text-gray-700" for="termsCheck">I agree to the terms and conditions</label>
+                    </div>
+                    <div class="flex items-center justify-between mt-6">
+                        <button class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onclick="hideApplicationForm()">
+                            Back
+                        </button>
+                        <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                            Submit Application
+                        </button>
+                    </div>
+                </form>
+            `,
+            returningStudent: `
+                <form action="process_returning_student.php" method="POST" class="space-y-6">
+                    <div class="bg-green-50 p-4 rounded mb-6">
+                        <p class="text-green-700">Welcome back! Please enter your student ID and information to continue.</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-gray-700 font-bold mb-2" for="studentId">Student ID</label>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="studentId" name="studentId" type="text" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-bold mb-2" for="email">Email Address</label>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" name="email" type="email" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-bold mb-2" for="program">Desired Program</label>
+                            <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="program" name="program" required>
+                                <option value="">Select a Program</option>
+                                <option value="BSBA">Business Administration</option>
+                                <option value="BSIT">Information Technology</option>
+                                <option value="BSCPE">Computer Engineering</option>
+                                <option value="BSCRIM">Criminology</option>
+                                <option value="BSTM">Tourism Management</option>
+                                <option value="BSP">Psychology</option>
+                                <option value="BSOA">Office Administration</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-bold mb-2" for="semester">Starting Semester</label>
+                            <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="semester" name="semester" required>
+                                <option value="">Select a Semester</option>
+                                <option value="1sem">1st Semester</option>
+                                <option value="2sem">2nd Semester</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mt-6">
+                        <label class="block text-gray-700 font-bold mb-2" for="additionalInfo">Additional Information</label>
+                        <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="additionalInfo" name="additionalInfo" rows="4"></textarea>
+                    </div>
+                    <div class="flex items-center justify-between mt-6">
+                        <button class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onclick="hideApplicationForm()">
+                            Back
+                        </button>
+                        <button class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                            Submit Application
+                        </button>
+                    </div>
+                </form>
+            `,
+            transferStudent: `
+                <form action="process_transfer_student.php" method="POST" enctype="multipart/form-data" class="space-y-6">
+                    <div class="bg-purple-50 p-4 rounded mb-6">
+                        <p class="text-purple-700">Please provide your previous institution information and the details required for your transfer application.</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-gray-700 font-bold mb-2" for="firstName">First Name</label>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="firstName" name="firstName" type="text" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-bold mb-2" for="middleName">Middle Name</label>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="middleName" name="middleName" type="text">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-bold mb-2" for="lastName">Last Name</label>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="lastName" name="lastName" type="text" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-bold mb-2" for="email">Email Address</label>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" name="email" type="email" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-bold mb-2" for="phone">Phone Number</label>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="phone" name="phone" type="tel">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-bold mb-2" for="previousInstitution">Previous Institution</label>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="previousInstitution" name="previousInstitution" type="text" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-bold mb-2" for="yearFrom">Years Attended</label>
+                            <div class="grid grid-cols-2 gap-4">
+                                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="yearFrom" name="yearFrom" type="number" min="2000" max="2025" placeholder="From" required>
+                                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="yearTo" name="yearTo" type="number" min="2000" max="2025" placeholder="To" required>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-bold mb-2" for="program">Desired Program</label>
+                            <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="program" name="program" required>
+                                <option value="">Select a Program</option>
+                                <option value="BSBA">Business Administration</option>
+                                <option value="BSIT">Information Technology</option>
+                                <option value="BSCPE">Computer Engineering</option>
+                                <option value="BSCRIM">Criminology</option>
+                                <option value="BSTM">Tourism Management</option>
+                                <option value="BSP">Psychology</option>
+                                <option value="BSOA">Office Administration</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-bold mb-2" for="transferCredits">Completed Credits</label>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="transferCredits" name="transferCredits" type="number" min="0" max="200" required>
+                        </div>
+                    </div>
+                    <div class="mt-6">
+                        <label class="block text-gray-700 font-bold mb-2">Transcripts</label>
+                        <div class="bg-gray-100 p-4 rounded">
+                            <p class="text-sm text-gray-700 mb-2">Please upload your official transcripts from your previous institution.</p>
+                            <input type="file" id="transcripts" name="transcripts" class="w-full" accept=".pdf,.doc,.docx">
+                        </div>
+                    </div>
+                    <div class="mt-6">
+                        <label class="block text-gray-700 font-bold mb-2" for="reasonForTransfer">Reason for Transfer</label>
+                        <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="reasonForTransfer" name="reasonForTransfer" rows="4" required></textarea>
+                    </div>
+                    <div class="flex items-center mt-6">
+                        <input class="mr-2" type="checkbox" id="termsCheck" name="termsCheck" required>
+                        <label class="text-gray-700" for="termsCheck">I certify that all information provided is accurate and complete</label>
+                    </div>
+                    <div class="flex items-center justify-between mt-6">
+                        <button class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onclick="hideApplicationForm()">
+                            Back
+                        </button>
+                        <button class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                            Submit Transfer Application
+                        </button>
+                    </div>
+                </form>
+            `
+        };
+
+        // Function to show application form based on student type
+        function showApplicationForm(studentType) {
+            const applicationForm = document.getElementById('applicationForm');
+            const formTitle = document.getElementById('formTitle');
+            const formContent = document.getElementById('formContent');
+            
+            // Set form title based on student type
+            if (studentType === 'newStudent') {
+                formTitle.textContent = 'New Student Application';
+            } else if (studentType === 'returningStudent') {
+                formTitle.textContent = 'Returning Student Application';
+            } else if (studentType === 'transferStudent') {
+                formTitle.textContent = 'Transfer Student Application';
+            }
+            
+            // Set form content
+            formContent.innerHTML = formTemplates[studentType];
+            
+            // Show the form
+            applicationForm.classList.remove('hidden');
+            
+            // Scroll to form
+            applicationForm.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Function to hide application form
+        function hideApplicationForm() {
+            const applicationForm = document.getElementById('applicationForm');
+            applicationForm.classList.add('hidden');
+        }
+
+        // Event listeners for buttons
+        document.getElementById('newStudentBtn').addEventListener('click', function() {
+            showApplicationForm('newStudent');
+        });
+
+        document.getElementById('returningStudentBtn').addEventListener('click', function() {
+            showApplicationForm('returningStudent');
+        });
+
+        document.getElementById('transferStudentBtn').addEventListener('click', function() {
+            showApplicationForm('transferStudent');
+        });
+    </script>
+</body>
+</html>

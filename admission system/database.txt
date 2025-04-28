@@ -1,0 +1,158 @@
+===Database admission_system
+
+== Table structure for table applications
+
+|------
+|Column|Type|Null|Default
+|------
+|//**application_id**//|int(11)|No|
+|student_id|int(11)|No|
+|type_id|int(11)|No|
+|program_id|int(11)|No|
+|semester_id|int(11)|No|
+|application_status|enum(&#039;Pending&#039;, &#039;Under Review&#039;, &#039;Approved&#039;, &#039;Rejected&#039;)|Yes|Pending
+|submission_date|timestamp|No|current_timestamp()
+|decision_date|timestamp|Yes|NULL
+== Dumping data for table applications
+
+== Table structure for table application_documents
+
+|------
+|Column|Type|Null|Default
+|------
+|//**document_id**//|int(11)|No|
+|application_id|int(11)|No|
+|document_type|varchar(50)|No|
+|file_name|varchar(255)|No|
+|file_path|varchar(255)|No|
+|upload_date|timestamp|No|current_timestamp()
+== Dumping data for table application_documents
+
+== Table structure for table application_status_history
+
+|------
+|Column|Type|Null|Default
+|------
+|//**history_id**//|int(11)|No|
+|application_id|int(11)|No|
+|status|enum(&#039;Pending&#039;, &#039;Under Review&#039;, &#039;Approved&#039;, &#039;Rejected&#039;)|No|
+|status_date|timestamp|No|current_timestamp()
+|comments|text|Yes|NULL
+|updated_by|varchar(100)|Yes|NULL
+== Dumping data for table application_status_history
+
+== Table structure for table new_student_details
+
+|------
+|Column|Type|Null|Default
+|------
+|//**detail_id**//|int(11)|No|
+|**application_id**|int(11)|No|
+|high_school|varchar(100)|No|
+|graduation_year|int(11)|No|
+|personal_statement|text|Yes|NULL
+== Dumping data for table new_student_details
+
+== Table structure for table programs
+
+|------
+|Column|Type|Null|Default
+|------
+|//**program_id**//|int(11)|No|
+|program_name|varchar(100)|No|
+|**program_code**|varchar(20)|No|
+|description|text|Yes|NULL
+|active|tinyint(1)|Yes|1
+== Dumping data for table programs
+
+|1|Business Administration|BSBA|NULL|1
+|2|Information Technology|BSIT|NULL|1
+|3|Computer Engineering|BSCPE|NULL|1
+|4|Criminology|BSCRIM|NULL|1
+|5|Tourism Management|BSTM|NULL|1
+|6|Psychology|BSP|NULL|1
+|7|Office Administration|BSOA|NULL|1
+== Table structure for table returning_student_details
+
+|------
+|Column|Type|Null|Default
+|------
+|//**detail_id**//|int(11)|No|
+|**application_id**|int(11)|No|
+|previous_student_id|varchar(50)|No|
+|additional_info|text|Yes|NULL
+== Dumping data for table returning_student_details
+
+== Table structure for table semesters
+
+|------
+|Column|Type|Null|Default
+|------
+|//**semester_id**//|int(11)|No|
+|semester_name|varchar(50)|No|
+|**semester_code**|varchar(20)|No|
+== Dumping data for table semesters
+
+|1|1st Semester|1sem
+|2|2nd Semester|2sem
+== Table structure for table students
+
+|------
+|Column|Type|Null|Default
+|------
+|//**student_id**//|int(11)|No|
+|first_name|varchar(50)|No|
+|middle_name|varchar(50)|No|
+|last_name|varchar(50)|No|
+|**email**|varchar(100)|No|
+|phone|varchar(20)|Yes|NULL
+|date_of_birth|date|Yes|NULL
+|created_at|timestamp|No|current_timestamp()
+|updated_at|timestamp|No|current_timestamp()
+== Dumping data for table students
+
+== Table structure for table student_types
+
+|------
+|Column|Type|Null|Default
+|------
+|//**type_id**//|int(11)|No|
+|**type_name**|varchar(50)|No|
+== Dumping data for table student_types
+
+|1|New Student
+|2|Returning Student
+|3|Transfer Student
+== Table structure for table transfer_student_details
+
+|------
+|Column|Type|Null|Default
+|------
+|//**detail_id**//|int(11)|No|
+|**application_id**|int(11)|No|
+|previous_institution|varchar(100)|No|
+|year_from|int(11)|No|
+|year_to|int(11)|No|
+|completed_credits|int(11)|No|
+|transcript_file_path|varchar(255)|Yes|NULL
+|reason_for_transfer|text|Yes|NULL
+== Dumping data for table transfer_student_details
+
+== Table structure for table users
+
+|------
+|Column|Type|Null|Default
+|------
+|//**user_id**//|int(11)|No|
+|**username**|varchar(50)|No|
+|password|varchar(255)|No|
+|first_name|varchar(50)|No|
+|last_name|varchar(50)|No|
+|**email**|varchar(100)|No|
+|role|enum(&#039;admin&#039;, &#039;staff&#039;)|No|
+|active|tinyint(1)|Yes|1
+|created_at|timestamp|No|current_timestamp()
+|last_login|timestamp|Yes|NULL
+== Dumping data for table users
+
+|1|admin|$2y$10$MAEDWpYjsSqtKgE9OcmpK.lkQGVxzyhEI8jpOPscDLNnvuPLg/g2C|System|Administrator| |admin|1|2025-04-25 01:25:19|2025-04-25 01:25:27

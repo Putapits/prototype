@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Applications</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    main {
+      flex: 1;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+  <!-- Header -->
+  <header class="bg-[#9CAF70] text-white p-6">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <h1 class="text-2xl font-bold">
+        <a href="admission.html">
+          <sup>admission</sup><span class="text-red-700">system</span>
+        </a>
+      </h1>
+      <nav class="space-x-6">
+        <a href="dashboard.html" class="hover:underline">Dashboard</a>
+        <a href="applications.html" class="hover:underline" aria-current="page">Applications</a>
+        <a href="students.html" class="hover:underline">Students</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-6 py-10 w-full">
+    <div class="flex justify-between items-center mb-8">
+        <div class="text-left">
+            <h2 class="text-3xl font-bold">Applications</h2>
+          </div>
+      <button id="toggleForm" class="bg-gray-500 hover:bg-green-500 text-white px-6 py-2 rounded shadow" aria-expanded="false" aria-controls="applicationForm">
+        New Application
+      </button>
+    </div>
+
+    <!-- Application Form (Hidden by default) -->
+    <form id="applicationForm" class="bg-white rounded-lg shadow p-6 mb-8 hidden" aria-hidden="true">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label for="appId" class="block text-sm font-medium text-gray-700 mb-1">Application ID</label>
+          <input type="text" id="appId" placeholder="e.g., APP-2025-001" class="border border-gray-300 rounded px-4 py-2 w-full" required pattern="[A-Za-z0-9-]+" title="Only alphanumeric characters and hyphens allowed" />
+          <p id="appIdError" class="text-red-500 text-xs mt-1 hidden">Please enter a valid application ID</p>
+        </div>
+        <div>
+          <label for="studentName" class="block text-sm font-medium text-gray-700 mb-1">Student Name</label>
+          <input type="text" id="studentName" placeholder="Full Name" class="border border-gray-300 rounded px-4 py-2 w-full" required />
+          <p id="studentNameError" class="text-red-500 text-xs mt-1 hidden">Please enter the student name</p>
+        </div>
+        <div>
+          <label for="program" class="block text-sm font-medium text-gray-700 mb-1">Program</label>
+          <input type="text" id="program" placeholder="e.g., Computer Science" class="border border-gray-300 rounded px-4 py-2 w-full" required />
+          <p id="programError" class="text-red-500 text-xs mt-1 hidden">Please enter a program</p>
+        </div>
+        <div>
+          <label for="submissionDate" class="block text-sm font-medium text-gray-700 mb-1">Submission Date</label>
+          <input type="date" id="submissionDate" class="border border-gray-300 rounded px-4 py-2 w-full" required />
+          <p id="submissionDateError" class="text-red-500 text-xs mt-1 hidden">Please select a submission date</p>
+        </div>
+        <div>
+          <label for="status" class="block text-sm font-medium text-gray-700 mb-1">Status</label>
+          <select id="status" class="border border-gray-300 rounded px-4 py-2 w-full" required>
+            <option value="">Select Status</option>
+            <option value="Approved">Approved</option>
+            <option value="Reviewing">Reviewing</option>
+            <option value="Pending">Pending</option>
+            <option value="Rejected">Rejected</option>
+          </select>
+          <p id="statusError" class="text-red-500 text-xs mt-1 hidden">Please select a status</p>
+        </div>
+      </div>
+      <div class="mt-6 flex justify-end space-x-4">
+        <button type="button" id="cancelForm" class="bg-gray-300 hover:bg-gray-400 text-gray-800 px-6 py-2 rounded">Cancel</button>
+        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded">Submit</button>
+      </div>
+    </form>
+
+    <!-- Filter/Search Row -->
+    <div class="flex flex-col md:flex-row md:items-center gap-4 mb-6">
+      <input type="text" id="searchInput" placeholder="Search applications..." class="px-4 py-2 border border-gray-300 rounded w-full md:w-1/2" aria-label="Search applications" />
+      <select id="statusFilter" class="border border-gray-300 rounded px-4 py-2" aria-label="Filter by status">
+        <option value="">All Applications</option>
+        <option value="Pending">Pending</option>
+        <option value="Reviewing">Reviewing</option>
+        <option value="Approved">Approved</option>
+        <option value="Rejected">Rejected</option>
+      </select>
+    </div>
+
+    <!-- Applications Table -->
+    <div class="bg-white rounded-lg shadow overflow-x-auto">
+      <table class="min-w-full text-sm" id="applicationsTable" aria-label="Applications list">
+        <thead class="bg-gray-100 text-left">
+          <tr>
+            <th class="px-6 py-3 font-medium text-gray-600">ID</th>
+            <th class="px-6 py-3 font-medium text-gray-600">Student</th>
+            <th class="px-6 py-3 font-medium text-gray-600">Program</th>
+            <th class="px-6 py-3 font-medium text-gray-600">Submission Date</th>
+            <th class="px-6 py-3 font-medium text-gray-600">Status</th>
+            <th class="px-6 py-3 font-medium text-gray-600">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+          <tr class="border-t">
+            <td colspan="6" class="px-6 py-6 text-center text-gray-400">No applications yet</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white text-center py-4 text-sm text-gray-500 mt-auto">
+    <p>© 2025 xyz - Admission Management System</p>
+  </footer>
+
+  <script>
+    // DOM Elements
+    const toggleFormBtn = document.getElementById('toggleForm');
+    const applicationForm = document.getElementById('applicationForm');
+    const cancelFormBtn = document.getElementById('cancelForm');
+    const form = document.getElementById('applicationForm');
+    const tableBody = document.getElementById('tableBody');
+    const searchInput = document.getElementById('searchInput');
+    const statusFilter = document.getElementById('statusFilter');
+    
+    // Application data storage
+    let applications = JSON.parse(localStorage.getItem('applications')) || [];
+    
+    // Initialize the page
+    document.addEventListener('DOMContentLoaded', () => {
+      renderApplications();
+    });
+    
+    // Toggle form visibility
+    toggleFormBtn.addEventListener('click', () => {
+      const isHidden = applicationForm.classList.contains('hidden');
+      applicationForm.classList.toggle('hidden');
+      toggleFormBtn.setAttribute('aria-expanded', isHidden);
+      applicationForm.setAttribute('aria-hidden', !isHidden);
+      
+      // Clear form when opening
+      if (isHidden) {
+        form.reset();
+        clearValidationErrors();
+      }
+    });
+    
+    // Cancel button event
+    cancelFormBtn.addEventListener('click', () => {
+      form.reset();
+      clearValidationErrors();
+      applicationForm.classList.add('hidden');
+      toggleFormBtn.setAttribute('aria-expanded', 'false');
+      applicationForm.setAttribute('aria-hidden', 'true');
+    });
+    
+    // Clear validation errors
+    function clearValidationErrors() {
+      const errorElements = document.querySelectorAll('[id$="Error"]');
+      errorElements.forEach(el => el.classList.add('hidden'));
+    }
+    
+    // Form submission
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      
+      // Validate form
+      if (!validateForm()) {
+        return;
+      }
+      
+      const id = document.getElementById('appId').value.trim();
+      const student = document.getElementById('studentName').value.trim();
+      const program = document.getElementById('program').value.trim();
+      const date = document.getElementById('submissionDate').value;
+      const status = document.getElementById('status').value;
+      
+      // Add new application
+      const newApplication = {
+        id,
+        student,
+        program,
+        date,
+        status,
+        timestamp: Date.now() // For sorting
+      };
+      
+      // Check for duplicate IDs
+      if (applications.some(app => app.id === id)) {
+        document.getElementById('appIdError').textContent = "This Application ID already exists";
+        document.getElementById('appIdError').classList.remove('hidden');
+        return;
+      }
+      
+      // Add to applications array
+      applications.push(newApplication);
+      
+      // Save to localStorage
+      localStorage.setItem('applications', JSON.stringify(applications));
+      
+      // Render and reset
+      renderApplications();
+      form.reset();
+      applicationForm.classList.add('hidden');
+      toggleFormBtn.setAttribute('aria-expanded', 'false');
+      applicationForm.setAttribute('aria-hidden', 'true');
+    });
+    
+    // Validate form
+    function validateForm() {
+      let isValid = true;
+      
+      // AppID validation
+      const appId = document.getElementById('appId').value.trim();
+      if (!appId || !/^[A-Za-z0-9-]+$/.test(appId)) {
+        document.getElementById('appIdError').classList.remove('hidden');
+        isValid = false;
+      } else {
+        document.getElementById('appIdError').classList.add('hidden');
+      }
+      
+      // Student name validation
+      const studentName = document.getElementById('studentName').value.trim();
+      if (!studentName) {
+        document.getElementById('studentNameError').classList.remove('hidden');
+        isValid = false;
+      } else {
+        document.getElementById('studentNameError').classList.add('hidden');
+      }
+      
+      // Program validation
+      const program = document.getElementById('program').value.trim();
+      if (!program) {
+        document.getElementById('programError').classList.remove('hidden');
+        isValid = false;
+      } else {
+        document.getElementById('programError').classList.add('hidden');
+      }
+      
+      // Date validation
+      const submissionDate = document.getElementById('submissionDate').value;
+      if (!submissionDate) {
+        document.getElementById('submissionDateError').classList.remove('hidden');
+        isValid = false;
+      } else {
+        document.getElementById('submissionDateError').classList.add('hidden');
+      }
+      
+      // Status validation
+      const status = document.getElementById('status').value;
+      if (!status) {
+        document.getElementById('statusError').classList.remove('hidden');
+        isValid = false;
+      } else {
+        document.getElementById('statusError').classList.add('hidden');
+      }
+      
+      return isValid;
+    }
+    
+    // Format date for display
+    function formatDate(dateString) {
+      const date = new Date(dateString);
+      return date.toLocaleDateString('en-US', { 
+        year: 'numeric', 
+        month: 'short', 
+        day: 'numeric' 
+      });
+    }
+    
+    // Render applications table
+    function renderApplications() {
+      // Filter applications
+      const searchTerm = searchInput.value.toLowerCase();
+      const statusTerm = statusFilter.value;
+      
+      const filteredApplications = applications.filter(app => {
+        const matchesSearch = 
+          app.id.toLowerCase().includes(searchTerm) || 
+          app.student.toLowerCase().includes(searchTerm) || 
+          app.program.toLowerCase().includes(searchTerm);
+        
+        const matchesStatus = statusTerm === '' || app.status === statusTerm;
+        
+        return matchesSearch && matchesStatus;
+      });
+      
+      // Clear table
+      tableBody.innerHTML = '';
+      
+      // Show message if no applications
+      if (filteredApplications.length === 0) {
+        const noDataRow = document.createElement('tr');
+        noDataRow.className = 'border-t';
+        noDataRow.innerHTML = `
+          <td colspan="6" class="px-6 py-6 text-center text-gray-400">
+            ${applications.length === 0 ? 'No applications yet' : 'No matching applications found'}
+          </td>
+        `;
+        tableBody.appendChild(noDataRow);
+        return;
+      }
+      
+      // Status style classes
+      const statusClasses = {
+        'Approved': 'bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-semibold',
+        'Reviewing': 'bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs font-semibold',
+        'Pending': 'bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs font-semibold',
+        'Rejected': 'bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs font-semibold'
+      };
+      
+      // Add application rows
+      filteredApplications.forEach((app, index) => {
+        const row = document.createElement('tr');
+        row.className = index % 2 === 0 ? 'bg-white border-t' : 'bg-gray-50 border-t';
+        row.innerHTML = `
+          <td class="px-6 py-4">${app.id}</td>
+          <td class="px-6 py-4">${app.student}</td>
+          <td class="px-6 py-4">${app.program}</td>
+          <td class="px-6 py-4">${formatDate(app.date)}</td>
+          <td class="px-6 py-4"><span class="${statusClasses[app.status] || ''}">${app.status}</span></td>
+          <td class="px-6 py-4">
+            <button class="text-blue-600 hover:underline cursor-pointer view-btn mr-3" data-id="${app.id}">View</button>
+            <button class="text-red-600 hover:underline cursor-pointer delete-btn" data-id="${app.id}">Delete</button>
+          </td>
+        `;
+        tableBody.appendChild(row);
+      });
+      
+      // Attach event listeners to action buttons
+      document.querySelectorAll('.view-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const appId = this.getAttribute('data-id');
+          alert(`Viewing application: ${appId}`);
+          // Implement view functionality here
+        });
+      });
+      
+      document.querySelectorAll('.delete-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const appId = this.getAttribute('data-id');
+          if (confirm(`Are you sure you want to delete application ${appId}?`)) {
+            applications = applications.filter(app => app.id !== appId);
+            localStorage.setItem('applications', JSON.stringify(applications));
+            renderApplications();
+          }
+        });
+      });
+    }
+    
+    // Search and filter functionality
+    searchInput.addEventListener('input', renderApplications);
+    statusFilter.addEventListener('change', renderApplications);
+  </script>
+</body>
+</html>
