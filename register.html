@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sign Up | EduAdmit</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
+  <?php
+  // Display error messages or retained data if available in session
+  session_start();
+  $errors = $_SESSION['form_errors'] ?? [];
+  $form_data = $_SESSION['form_data'] ?? [];
+  
+  // Function to get form value
+  function getValue($field) {
+      global $form_data;
+      return isset($form_data[$field]) ? htmlspecialchars($form_data[$field]) : '';
+  }
+  
+  // Function to display error
+  function showError($field) {
+      global $errors;
+      if (isset($errors[$field])) {
+          return '<span class="text-red-500 text-sm mt-1">' . $errors[$field] . '</span>';
+      }
+      return '';
+  }
+  
+  // Clear session data after use
+  unset($_SESSION['form_errors']);
+  unset($_SESSION['form_data']);
+  ?>
+
+  <!-- Header -->
+  <header class="bg-purple-900 text-white p-6">
+    <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center">
+      <h1 class="text-2xl font-bold"><sup>admission</sup><span class="text-red-600 font-bold">system</span></h1>
+      
+      <!-- Mobile menu button -->
+      <button class="md:hidden text-white focus:outline-none" id="menu-toggle">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:block">
+        <div class="flex space-x-4">
+          <a href="home.html" class="px-3 py-2 rounded hover:bg-fuchsia-900 transition duration-300">Home</a>
+          <a href="program.html" class="px-3 py-2 rounded hover:bg-fuchsia-900 transition duration-300">Programs</a>
+          <a href="contact.html" class="px-3 py-2 rounded hover:bg-fuchsia-900 transition duration-300">Contact</a>
+          <a href="faq.html" class="px-3 py-2 rounded hover:bg-fuchsia-900 transition duration-300">FAQ</a>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div id="mobile-menu" class="hidden w-full mt-4">
+      <nav class="flex flex-col space-y-2">
+        <a href="home.html" class="px-3 py-2 rounded hover:bg-fuchsia-900 transition duration-300">Home</a>
+        <a href="program.html" class="px-3 py-2 rounded hover:bg-fuchsia-900 transition duration-300">Programs</a>
+        <a href="contact.html" class="px-3 py-2 rounded hover:bg-fuchsia-900 transition duration-300">Contact</a>
+        <a href="faq.html" class="px-3 py-2 rounded hover:bg-fuchsia-900 transition duration-300">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-grow flex items-center justify-center py-12 px-4">
+    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+      <h2 class="text-2xl font-bold mb-1 text-center text-violet-600">Registration</h2>
+      <p class="text-center mb-6">Create an account to start your application process</p>
+      
+      <!-- Display flash message if available -->
+      <?php if (isset($_SESSION['flash_message'])): ?>
+      <div class="<?php echo $_SESSION['flash_message']['type'] === 'success' ? 'bg-green-100 border-green-400 text-green-700' : 'bg-red-100 border-red-400 text-red-700'; ?> px-4 py-3 rounded mb-4">
+        <?php 
+        echo $_SESSION['flash_message']['message'];
+        unset($_SESSION['flash_message']);
+        ?>
+      </div>
+      <?php endif; ?>
+      
+      <form action="registration_handler.php" method="POST" class="space-y-5">
+        <div>
+          <label for="first-name" class="block mb-1 text-gray-700 font-semibold">First Name</label>
+          <input type="text" id="first-name" name="first-name" value="<?php echo getValue('first_name'); ?>" required 
+                class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-violet-400">
+          <?php echo showError('first_name'); ?>
+        </div>
+
+        <div>
+          <label for="last-name" class="block mb-1 text-gray-700 font-semibold">Last Name</label>
+          <input type="text" id="last-name" name="last-name" value="<?php echo getValue('last_name'); ?>" required 
+                class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-violet-400">
+          <?php echo showError('last_name'); ?>
+        </div>
+
+        <div>
+          <label for="email" class="block mb-1 text-gray-700 font-semibold">Email Address</label>
+          <input type="email" id="email" name="email" value="<?php echo getValue('email'); ?>" required 
+                class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-violet-400">
+          <?php echo showError('email'); ?>
+        </div>
+
+        <div>
+          <label for="password" class="block mb-1 text-gray-700 font-semibold">Password</label>
+          <input type="password" id="password" name="password" required 
+                class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-violet-400">
+          <?php echo showError('password'); ?>
+        </div>
+
+        <div>
+          <label for="confirm-password" class="block mb-1 text-gray-700 font-semibold">Confirm Password</label>
+          <input type="password" id="confirm-password" name="confirm-password" required 
+                class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-violet-400">
+          <?php echo showError('confirm_password'); ?>
+        </div>
+
+        <button type="submit" class="w-full bg-violet-900 text-white py-2 rounded-lg hover:bg-fuchsia-700 transition duration-300">
+          Sign Up
+        </button>
+      </form>
+
+      <p class="mt-6 text-center text-gray-600 text-sm">
+        Already have an account?
+        <a href="login.php" class="text-violet-600 hover:underline">Log In</a>
+      </p>
+    </div>
+  </main>
+
+  <footer class="bg-white text-center py-4 text-sm text-gray-500">
+    <p>&copy; 2025 Admission Management System. All rights reserved.</p>
+  </footer>
+  
+  <script>
+    // Mobile menu toggle functionality
+    document.getElementById('menu-toggle').addEventListener('click', function() {
+      const mobileMenu = document.getElementById('mobile-menu');
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
+</body>
+</html>
