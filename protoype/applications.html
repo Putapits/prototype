@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Applications</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    main {
+      flex: 1;
+    }
+  </style>
+</head>
+<body class="bg-[#313866] text-white">
+
+  <!-- Header -->
+  <header class="bg-[#50409A] text-white p-6">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <h1 class="text-2xl font-bold">
+        <a href="admission.html">
+          <sup>admission</sup><span class="text-[#ff7bbf]">system</span>
+        </a>
+      </h1>
+      <nav class="space-x-6">
+        <a href="dashboard.html" class="hover:underline">Dashboard</a>
+        <a href="applications.html" class="hover:underline" aria-current="page">Applications</a>
+        <a href="students.html" class="hover:underline">Students</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-6 py-10 w-full">
+    <div class="flex justify-between items-center mb-8">
+      <div class="text-left">
+        <h2 class="text-3xl font-bold">Applications</h2>
+      </div>
+      <button id="toggleForm" class="bg-[#964ec2] hover:bg-[#ff7bbf] text-white px-6 py-2 rounded shadow" aria-expanded="false" aria-controls="applicationForm">
+        New Application
+      </button>
+    </div>
+
+    <!-- Application Form (Hidden by default) -->
+    <form id="applicationForm" class="bg-white rounded-lg shadow p-6 mb-8 hidden" aria-hidden="true">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label for="appId" class="block text-sm font-medium text-gray-700 mb-1">Application ID</label>
+          <input type="text" id="appId" placeholder="e.g., APP-2025-001" class="border border-gray-300 rounded px-4 py-2 w-full" required pattern="[A-Za-z0-9-]+" title="Only alphanumeric characters and hyphens allowed" />
+          <p id="appIdError" class="text-red-500 text-xs mt-1 hidden">Please enter a valid application ID</p>
+        </div>
+        <div>
+          <label for="studentName" class="block text-sm font-medium text-gray-700 mb-1">Student Name</label>
+          <input type="text" id="studentName" placeholder="Full Name" class="border border-gray-300 rounded px-4 py-2 w-full" required />
+          <p id="studentNameError" class="text-red-500 text-xs mt-1 hidden">Please enter the student name</p>
+        </div>
+        <div>
+          <label for="program" class="block text-sm font-medium text-gray-700 mb-1">Program</label>
+          <input type="text" id="program" placeholder="e.g., Computer Science" class="border border-gray-300 rounded px-4 py-2 w-full" required />
+          <p id="programError" class="text-red-500 text-xs mt-1 hidden">Please enter a program</p>
+        </div>
+        <div>
+          <label for="submissionDate" class="block text-sm font-medium text-gray-700 mb-1">Submission Date</label>
+          <input type="date" id="submissionDate" class="border border-gray-300 rounded px-4 py-2 w-full" required />
+          <p id="submissionDateError" class="text-red-500 text-xs mt-1 hidden">Please select a submission date</p>
+        </div>
+        <div>
+          <label for="status" class="block text-sm font-medium text-gray-700 mb-1">Status</label>
+          <select id="status" class="border border-gray-300 rounded px-4 py-2 w-full" required>
+            <option value="">Select Status</option>
+            <option value="Approved">Approved</option>
+            <option value="Reviewing">Reviewing</option>
+            <option value="Pending">Pending</option>
+            <option value="Rejected">Rejected</option>
+          </select>
+          <p id="statusError" class="text-red-500 text-xs mt-1 hidden">Please select a status</p>
+        </div>
+      </div>
+      <div class="mt-6 flex justify-end space-x-4">
+        <button type="button" id="cancelForm" class="bg-gray-300 hover:bg-gray-400 text-gray-800 px-6 py-2 rounded">Cancel</button>
+        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded">Submit</button>
+      </div>
+    </form>
+
+    <!-- Filter/Search Row -->
+    <div class="flex flex-col md:flex-row md:items-center gap-4 mb-6">
+      <input type="text" id="searchInput" placeholder="Search applications..." class="px-4 py-2 border border-gray-300 rounded w-full md:w-1/2 text-black" aria-label="Search applications" />
+      <select id="statusFilter" class="border border-gray-300 rounded px-4 py-2 text-gray-500" aria-label="Filter by status">
+        <option value="">All Applications</option>
+        <option value="Pending">Pending</option>
+        <option value="Reviewing">Reviewing</option>
+        <option value="Approved">Approved</option>
+        <option value="Rejected">Rejected</option>
+      </select>
+    </div>
+
+    <!-- Applications Table -->
+    <div class="bg-[#50409A] rounded-lg shadow overflow-hidden">
+      <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-[#313866]">
+          <tr>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-200 uppercase tracking-wider">Applicant</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-200 uppercase tracking-wider">Program</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-200 uppercase tracking-wider">Status</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-200 uppercase tracking-wider">Date</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-200 uppercase tracking-wider">Actions</th>
+          </tr>
+        </thead>
+        <tbody class="bg-[#50409A] divide-y divide-gray-200">
+          <tr>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <div class="flex items-center">
+                <div class="ml-4">
+                  <div class="text-sm font-medium text-white">Jane Smith</div>
+                  <div class="text-sm text-gray-300">jane.smith@example.com</div>
+                </div>
+              </div>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <div class="text-sm text-white">Business Administration</div>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-[#ff7bbf] text-white">
+                Pending
+              </span>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
+              2025-04-15
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
+              <a href="#" class="text-[#ff7bbf] hover:text-[#964ec2] mr-3">Review</a>
+              <a href="#" class="text-[#ff7bbf] hover:text-[#964ec2]">Edit</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-[#50409A] text-white text-center py-4 text-sm">
+    <p>© 2025 Admission Management System. All rights reserved.</p>
+  </footer>
+
+  
+  
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mockup - Check Application Status</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#313866',
+            secondary: '#50409A',
+            accent: '#964ec2',
+            highlight: '#ff7bbf',
+            light: '#f3f4f6',
+            white: '#ffffff',
+            dark: '#1a1a2e',
+            darkCard: '#252542',
+            darkInput: '#30304d'
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-dark min-h-screen text-light">
+  <div class="container mx-auto px-4 py-8">
+    <!-- Header -->
+    <header class="bg-primary text-white rounded-lg shadow-lg mb-8">
+      <div class="container mx-auto px-6 py-4">
+        <div class="flex items-center justify-between">
+          <div>
+            <h1 class="text-3xl font-bold">Student Admission Portal</h1>
+            <p class="text-highlight">Your pathway to academic excellence</p>
+          </div>
+          <div class="hidden md:flex">
+            <a href="index.html" class="px-3 py-2 rounded hover:bg-secondary transition duration-300">Home</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <section class="bg-darkCard rounded-lg shadow-lg mb-8 p-6 border border-primary">
+        <h2 class="text-2xl font-bold text-highlight mb-4">Check Application Status</h2>
+
+        <!-- Mockup Form -->
+        <form onsubmit="event.preventDefault(); window.location.href='confirmation.html';" class="space-y-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-light font-bold mb-2" for="applicationId">Application ID</label>
+              <input class="shadow appearance-none border border-secondary bg-darkInput rounded w-full py-2 px-3 text-light leading-tight focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
+                     id="applicationId" name="applicationId" type="text" required>
+            </div>
+            <div>
+              <label class="block text-light font-bold mb-2" for="email">Email Address</label>
+              <input class="shadow appearance-none border border-secondary bg-darkInput rounded w-full py-2 px-3 text-light leading-tight focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
+                     id="email" name="email" type="email" required>
+            </div>
+          </div>
+          <div class="flex justify-center">
+            <button class="bg-accent hover:bg-highlight text-white font-bold py-2 px-6 rounded focus:outline-none focus:ring-2 focus:ring-highlight transition duration-300"
+                    type="submit">
+              Check Status
+            </button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-primary rounded-lg shadow-lg mt-8 p-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div>
+          <h3 class="text-lg font-bold mb-4 text-highlight">Contact Us</h3>
+          <p>Email: admissions@university.edu</p>
+          <p>Phone: (555) 123-4567</p>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold mb-4 text-highlight">Quick Links</h3>
+          <ul>
+            <li><a href="#" class="hover:text-highlight transition duration-300">About Us</a></li>
+            <li><a href="#" class="hover:text-highlight transition duration-300">Admission Requirements</a></li>
+            <li><a href="#" class="hover:text-highlight transition duration-300">Financial Aid</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold mb-4 text-highlight">Follow Us</h3>
+          <div class="flex space-x-4">
+            <a href="#" class="hover:text-highlight transition duration-300">Facebook</a>
+            <a href="#" class="hover:text-highlight transition duration-300">Twitter</a>
+            <a href="#" class="hover:text-highlight transition duration-300">Instagram</a>
+          </div>
+        </div>
+      </div>
+      <div class="mt-8 text-center text-sm">
+        <p>&copy; 2025 Admission Management System. All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

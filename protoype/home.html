@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admission system</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#313866] text-white">
+  <!-- Header -->
+  <header class="bg-[#50409A] text-white p-6">
+    <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center">
+      <h1 class="text-2xl font-bold"><sup>admission</sup><span class="text-[#ff7bbf] font-bold">system</span></h1>
+      
+      <!-- Mobile menu button -->
+      <button class="md:hidden text-white focus:outline-none" onclick="toggleMenu()">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:block">
+        <div class="flex space-x-4">
+          <a href="home.html" class="px-3 py-2 rounded hover:bg-[#964ec2] transition duration-300">Home</a>
+          <a href="program.html" class="px-3 py-2 rounded hover:bg-[#964ec2] transition duration-300">Programs</a>
+          <a href="contact.html" class="px-3 py-2 rounded hover:bg-[#964ec2] transition duration-300">Contact</a>
+          <a href="faq.html" class="px-3 py-2 rounded hover:bg-[#964ec2] transition duration-300">FAQ</a>
+        </div>
+      </nav>
+    </div>
+    
+    <!-- Mobile Navigation -->
+    <div id="mobile-menu" class="hidden w-full mt-4">
+      <nav class="flex flex-col space-y-2">
+        <a href="home.html" class="px-3 py-2 rounded hover:bg-[#964ec2] transition duration-300">Home</a>
+        <a href="program.html" class="px-3 py-2 rounded hover:bg-[#964ec2] transition duration-300">Programs</a>
+        <a href="contact.html" class="px-3 py-2 rounded hover:bg-[#964ec2] transition duration-300">Contact</a>
+        <a href="faq.html" class="px-3 py-2 rounded hover:bg-[#964ec2] transition duration-300">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+
+  <!-- Hero Section -->
+  <section class="bg-[#50409A] text-white py-20">
+    <div class="max-w-4xl mx-auto text-center px-4">
+      <h2 class="text-4xl font-bold mb-4">Streamline Your <span class="text-[#ff7bbf]">Admission</span> Process</h2>
+      <p class="mb-8 text-lg">Manage student applications, track enrollment progress, and make data-driven decisions with our comprehensive admission management system.</p>
+      <button class="bg-[#964ec2] hover:bg-[#ff7bbf] text-white font-semibold py-3 px-6 rounded"><a href="check_status.html">Check Application Status</a></button>
+    </div>
+  </section>
+
+ <!-- Key Features -->
+<section class="py-16 bg-[#313866]">
+  <div class="max-w-6xl mx-auto px-4 text-center">
+    <h3 class="text-3xl font-bold mb-8">Key Features</h3>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="p-6 border rounded shadow bg-[#50409A]">
+        <div class="text-[#ff7bbf] flex justify-center mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7a2 2 0 012-2h3.5l1 1H19a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7z" />
+          </svg>
+        </div>
+        <h4 class="font-bold text-xl mb-2">Application Management</h4>
+        <p>Easily track and process student applications from submission to decision with our intuitive interface.</p>
+      </div>
+
+      <div class="p-6 border rounded shadow bg-[#50409A]">
+        <div class="text-[#ff7bbf] flex justify-center mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2L1 7l11 5 9-4.09V17h2V7L12 2z" />
+            <path d="M12 22c-4.42 0-8-1.79-8-4v-2l8 3 8-3v2c0 2.21-3.58 4-8 4z" />
+          </svg>
+        </div>
+        <h4 class="font-bold text-xl mb-2">Student Database</h4>
+        <p>Maintain comprehensive profiles for each applicant with all relevant information in one secure location.</p>
+      </div>
+
+      <div class="p-6 border rounded shadow bg-[#50409A]">
+        <div class="text-[#ff7bbf] flex justify-center mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-6m4 6v-10m4 10v-4m4 4V3m-4 18h-4m-4 0H5m4 0v-4m4 4v-6" />
+          </svg>
+        </div>
+        <h4 class="font-bold text-xl mb-2">Advanced Analytics</h4>
+        <p>Generate insightful reports and visualizations to make data-driven decisions about your admission process.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <!-- Benefits Section -->
+  <section class="py-16 bg-[#50409A]">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+      <h3 class="text-3xl font-bold mb-8">Why Choose Our System</h3>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="bg-[#313866] p-6 rounded-lg">
+          <h4 class="font-semibold text-lg mb-2">Improved Efficiency</h4>
+          <p>Reduce administrative overhead and speed up application processing with automated workflows.</p>
+        </div>
+        <div class="bg-[#313866] p-6 rounded-lg">
+          <h4 class="font-semibold text-lg mb-2">Better Decision Making</h4>
+          <p>Use comprehensive analytics to identify trends and make informed admission decisions.</p>
+        </div>
+        <div class="bg-[#313866] p-6 rounded-lg">
+          <h4 class="font-semibold text-lg mb-2">Enhanced Communication</h4>
+          <p>Keep applicants informed throughout the admission process with automated status updates.</p>
+        </div>
+        <div class="bg-[#313866] p-6 rounded-lg">
+          <h4 class="font-semibold text-lg mb-2">Centralized Information</h4>
+          <p>Store all applicant data, documents, and communication history in one secure platform.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="py-16 bg-[#313866] text-center">
+    <h3 class="text-2xl font-bold mb-4">Ready to Transform Your Admission Process?</h3>
+    <p class="mb-6">Get started with our comprehensive admission management system today and see the difference it makes for your institution.</p>
+    <button class="bg-[#964ec2] hover:bg-[#ff7bbf] text-white font-semibold py-3 px-6 rounded"><a href="login.html">Get Started Now</a></button>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-[#50409A] text-white text-center py-4 text-sm">
+    <p>&copy; 2025 Admission Management System. All rights reserved.</p>
+  </footer>
+</body>
+</html>

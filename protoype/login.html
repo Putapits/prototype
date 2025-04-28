@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Log In | EduAdmit</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#313866] text-white flex flex-col min-h-screen">
+
+  <!-- Header -->
+  <header class="bg-[#50409A] text-white p-6">
+    <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center">
+      <h1 class="text-2xl font-bold"><sup>admission</sup><span class="text-red-600 font-bold">system</span></h1>
+      
+      <!-- Mobile menu button -->
+      <button class="md:hidden text-white focus:outline-none" id="menu-toggle">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:block">
+        <div class="flex space-x-4">
+          <a href="home.html" class="px-3 py-2 rounded hover:bg-fuchsia-900 transition duration-300">Home</a>
+          <a href="program.html" class="px-3 py-2 rounded hover:bg-fuchsia-900 transition duration-300">Programs</a>
+          <a href="contact.html" class="px-3 py-2 rounded hover:bg-fuchsia-900 transition duration-300">Contact</a>
+          <a href="faq.html" class="px-3 py-2 rounded hover:bg-fuchsia-900 transition duration-300">FAQ</a>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div id="mobile-menu" class="hidden w-full mt-4">
+      <nav class="flex flex-col space-y-2">
+        <a href="home.html" class="px-3 py-2 rounded hover:bg-fuchsia-900 transition duration-300">Home</a>
+        <a href="program.html" class="px-3 py-2 rounded hover:bg-fuchsia-900 transition duration-300">Programs</a>
+        <a href="contact.html" class="px-3 py-2 rounded hover:bg-fuchsia-900 transition duration-300">Contact</a>
+        <a href="faq.html" class="px-3 py-2 rounded hover:bg-fuchsia-900 transition duration-300">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-grow flex items-center justify-center py-12 px-4">
+    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+      <h2 class="text-2xl font-bold mb-1 text-center text-violet-600">Login</h2>
+      
+      <form action="index.html" method="GET" class="space-y-5">
+
+        <div>
+          <label for="email" class="block mb-1 text-gray-700 font-semibold">Email Address</label>
+          <input type="email" id="email" name="email" required 
+                class="w-full border border-gray-300 rounded-lg px-4 py-2 text-black focus:outline-none focus:ring-2 focus:ring-violet-400">
+        </div>
+
+        <div>
+          <label for="password" class="block mb-1 text-gray-700 font-semibold">Password</label>
+          <input type="password" id="password" name="password" required 
+                class="w-full border border-gray-300 rounded-lg px-4 py-2 text-black focus:outline-none focus:ring-2 focus:ring-violet-400">
+        </div>
+
+        <button type="submit" class="w-full bg-[#50409A] text-white py-2 rounded-lg hover:bg-[#964ec2] transition duration-300">
+          Login
+        </button>
+      </form>
+
+      <p class="mt-6 text-center text-gray-600 text-sm">
+        Don't have an account?
+        <a href="register.html" class="text-violet-600 hover:underline">Sign up</a>
+      </p>
+    </div>
+  </main>
+
+  <footer class="bg-[#50409A] text-center py-4 text-sm text-white">
+    <p>&copy; 2025 Admission Management System. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Mobile menu toggle functionality
+    document.getElementById('menu-toggle').addEventListener('click', function() {
+      const mobileMenu = document.getElementById('mobile-menu');
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
+
+</body>
+</html>

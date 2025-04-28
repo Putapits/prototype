@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Confirmation - University Admission Portal</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#313866',
+                        secondary: '#50409A',
+                        accent: '#964ec2',
+                        highlight: '#ff7bbf',
+                        light: '#f3f4f6',
+                        white: '#ffffff',
+                        dark: '#1a1a2e',
+                        darkCard: '#252542',
+                        darkInput: '#30304d'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #1a1a2e;
+            color: #f3f4f6;
+        }
+        .text-gray-600 {
+            color: #9ca3af !important;
+        }
+        .text-gray-500 {
+            color: #a3a3c2 !important;
+        }
+        .text-gray-700 {
+            color: #d1d5db !important;
+        }
+    </style>
+</head>
+<body class="bg-dark min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <header class="bg-primary text-white rounded-lg shadow-lg mb-8">
+            <div class="container mx-auto px-6 py-4">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h1 class="text-3xl font-bold">Student Admission Portal</h1>
+                        <p class="text-highlight">Your pathway to academic excellence</p>
+                    </div>
+                    <div class="hidden md:flex">
+                        <a href="index.html" class="px-3 py-2 rounded hover:bg-secondary">Home</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main>
+            <!-- Confirmation Section -->
+            <section class="bg-darkCard rounded-lg shadow-lg mb-8 p-6 border border-primary">
+                <div class="text-center mb-8">
+                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-accent bg-opacity-20 text-highlight mb-4 border border-accent">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <h2 class="text-2xl font-bold text-highlight mb-2">Application Submitted Successfully!</h2>
+                    <p class="text-gray-600">Thank you for submitting your application. Please save your application ID for future reference.</p>
+                </div>
+
+                <div class="bg-dark rounded-lg p-6 mb-6 border border-secondary">
+                    <div class="text-center mb-4">
+                        <h3 class="font-bold text-xl">Application ID: <span class="text-highlight">APP20250429001</span></h3>
+                        <p class="text-sm text-gray-500">Submitted on: April 29, 2025, 10:30 AM</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <h4 class="font-bold mb-2 text-highlight">Applicant Information</h4>
+                            <p><span class="font-semibold">Name:</span> Jane Doe</p>
+                            <p><span class="font-semibold">Email:</span> janedoe@example.com</p>
+                            <p><span class="font-semibold">Application Type:</span> New Student</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold mb-2 text-highlight">Program Information</h4>
+                            <p><span class="font-semibold">Program:</span> Bachelor of Computer Science</p>
+                            <p><span class="font-semibold">Starting Semester:</span> Fall 2025</p>
+                            <p><span class="font-semibold">Status:</span> 
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-highlight bg-opacity-30 text-highlight border border-highlight">
+                                    Pending
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-secondary bg-opacity-10 p-6 rounded-lg mb-6 border border-secondary">
+                    <h4 class="font-bold mb-2 text-highlight">Next Steps</h4>
+                    <ol class="list-decimal pl-5 space-y-2 text-gray-600">
+                        <li>Check your email for a confirmation message with your application details.</li>
+                        <li>Complete any additional requirements specific to your program.</li>
+                        <li>You can check your application status anytime using your Application ID and email.</li>
+                        <li>Our admissions team will review your application and may contact you for additional information.</li>
+                    </ol>
+                </div>
+
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mt-8">
+                    <a href="index.html" class="w-full sm:w-auto bg-secondary hover:bg-primary text-white font-bold py-2 px-6 rounded focus:outline-none focus:shadow-outline transition duration-300 text-center">
+                        Return to Home
+                    </a>
+                    
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-primary text-white rounded-lg shadow-lg mt-8 p-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Contact Us</h3>
+                    <p>Email: admissions@university.edu</p>
+                    <p>Phone: (555) 123-4567</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+                    <ul>
+                        <li><a href="#" class="hover:text-highlight">About Us</a></li>
+                        <li><a href="#" class="hover:text-highlight">Admission Requirements</a></li>
+                        <li><a href="#" class="hover:text-highlight">Financial Aid</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Follow Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="hover:text-highlight">Facebook</a>
+                        <a href="#" class="hover:text-highlight">Twitter</a>
+                        <a href="#" class="hover:text-highlight">Instagram</a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 text-center text-sm">
+                <p>&copy; 2025 Admission Management System. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

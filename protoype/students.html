@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admission System - Students</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Ensures footer stays at bottom */
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    main {
+      flex: 1;
+    }
+  </style>
+</head>
+<body class="bg-[#313866] text-white">
+
+  <!-- Header -->
+  <header class="bg-[#50409A] text-white p-6">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <h1 class="text-2xl font-bold">
+        <span class="text-sm align-top">admission</span><span class="text-[#ff7bbf]">system</span>
+      </h1>
+      <nav class="space-x-6">
+        <a href="dashboard.html" class="hover:underline" aria-label="Go to Dashboard">Dashboard</a>
+        <a href="applications.html" class="hover:underline" aria-label="Go to Applications">Applications</a>
+        <a href="students.html" class="hover:underline font-semibold" aria-current="page" aria-label="Current page: Students">Students</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto p-6">
+
+    <!-- Top Bar -->
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-2xl font-semibold">Students</h2>
+      <button id="addStudentBtn" class="bg-[#964ec2] hover:bg-[#ff7bbf] text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-[#ff7bbf]" aria-label="Add a new student">
+        + Add Student
+      </button>
+    </div>
+
+    <!-- Student List -->
+    <div class="bg-[#50409A] rounded-lg shadow overflow-hidden">
+      <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-[#313866]">
+          <tr>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-200 uppercase tracking-wider">Name</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-200 uppercase tracking-wider">Program</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-200 uppercase tracking-wider">Status</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-200 uppercase tracking-wider">Actions</th>
+          </tr>
+        </thead>
+        <tbody class="bg-[#50409A] divide-y divide-gray-200">
+          <tr>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <div class="flex items-center">
+                <div class="ml-4">
+                  <div class="text-sm font-medium text-white">John Doe</div>
+                  <div class="text-sm text-gray-300">john.doe@example.com</div>
+                </div>
+              </div>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <div class="text-sm text-white">Computer Science</div>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-[#ff7bbf] text-white">
+                Active
+              </span>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
+              <a href="#" class="text-[#ff7bbf] hover:text-[#964ec2] mr-3">Edit</a>
+              <a href="#" class="text-[#ff7bbf] hover:text-[#964ec2]">View</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-[#50409A] text-white text-center py-4 text-sm">
+    <p>© 2025 Admission Management System. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Wait for DOM to be fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      // Update copyright year automatically
+      document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+      // Add Student button functionality
+      document.getElementById('addStudentBtn').addEventListener('click', function() {
+        // You can implement this functionality based on your requirements
+        alert('Add student functionality will be implemented here');
+        
+        // For demonstration, add a sample student when button is clicked
+        addStudent('STU001', 'John Doe', 'Computer Science', 'john.doe@example.com', 'Active');
+      });
+    });
+
+    // Function to add students to the table
+    function addStudent(id, name, program, email, status) {
+      // Remove empty state message if it exists
+      const emptyState = document.getElementById('emptyState');
+      if (emptyState) {
+        emptyState.remove();
+      }
+
+      const tableBody = document.getElementById('studentsTableBody');
+      const row = document.createElement('tr');
+      row.className = 'border-t border-gray-200 hover:bg-gray-50';
+      
+      // Create table cells
+      row.innerHTML = `
+        <td class="px-4 py-3">${id}</td>
+        <td class="px-4 py-3">${name}</td>
+        <td class="px-4 py-3">${program}</td>
+        <td class="px-4 py-3">${email}</td>
+        <td class="px-4 py-3">
+          <span class="px-2 py-1 rounded-full text-xs ${status === 'Active' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'}">
+            ${status}
+          </span>
+        </td>
+        <td class="px-4 py-3">
+          <button class="text-blue-600 hover:text-blue-800 mr-2" aria-label="Edit student">Edit</button>
+          <button class="text-red-600 hover:text-red-800" aria-label="Delete student">Delete</button>
+        </td>
+      `;
+      
+      tableBody.appendChild(row);
+    }
+  </script>
+</body>
+</html>
